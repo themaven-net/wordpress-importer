@@ -359,7 +359,8 @@ class WP_Import extends WP_Importer {
 						'user_email'   => isset( $this->authors[ $old_login ]['author_email'] ) ? $this->authors[ $old_login ]['author_email'] : '',
 						'display_name' => $this->authors[ $old_login ]['author_display_name'],
 						'first_name'   => isset( $this->authors[ $old_login ]['author_first_name'] ) ? $this->authors[ $old_login ]['author_first_name'] : '',
-						'last_name'    => isset( $this->authors[ $old_login ]['author_last_name'] ) ? $this->authors[ $old_login ]['author_last_name'] : '',
+            'last_name'    => isset( $this->authors[ $old_login ]['author_last_name'] ) ? $this->authors[ $old_login ]['author_last_name'] : '',
+            'tempest_site_id' => isset ( $this->authors[$old_login]['tempest_site_id'] ) ? $this->authors[$old_login]['tempest_site_id'] : '',
 					);
 					$user_id   = wp_insert_user( $user_data );
 				}
@@ -720,6 +721,7 @@ class WP_Import extends WP_Importer {
 					'menu_order'     => $post['menu_order'],
 					'post_type'      => $post['post_type'],
 					'post_password'  => $post['post_password'],
+          'tempest_site_id' => $post['tempest_site_id'], 'tempest_content_item_id' => $post['tempest_content_item_id'],
 				);
 
 				$original_post_id = $post['post_id'];
@@ -838,7 +840,9 @@ class WP_Import extends WP_Importer {
 					$newcomments[ $comment_id ]['commentmeta']          = isset( $comment['commentmeta'] ) ? $comment['commentmeta'] : array();
 					if ( isset( $this->processed_authors[ $comment['comment_user_id'] ] ) ) {
 						$newcomments[ $comment_id ]['user_id'] = $this->processed_authors[ $comment['comment_user_id'] ];
-					}
+          }
+          $newcomments[$comment_id]['tempest_site_id'] = $comment['site_id'];
+          $newcomments[$comment_id]['tempest_item_id'] = $comment['tempest_content_item_id'];
 				}
 				ksort( $newcomments );
 

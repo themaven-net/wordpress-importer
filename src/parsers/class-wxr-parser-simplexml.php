@@ -80,7 +80,8 @@ class WXR_Parser_SimpleXML {
 				'author_email'        => (string) $a->author_email,
 				'author_display_name' => (string) $a->author_display_name,
 				'author_first_name'   => (string) $a->author_first_name,
-				'author_last_name'    => (string) $a->author_last_name,
+        'author_last_name'    => (string) $a->author_last_name,
+        'tempest_site_id'     => (string) $a->tempest_site_id,
 			);
 		}
 
@@ -160,7 +161,7 @@ class WXR_Parser_SimpleXML {
 			$post['post_content'] = (string) $content->encoded;
 			$post['post_excerpt'] = (string) $excerpt->encoded;
 
-			$wp                     = $item->children( $namespaces['wp'] );
+      $wp                     = $item->children( $namespaces['wp'] );
 			$post['post_id']        = (int) $wp->post_id;
 			$post['post_date']      = (string) $wp->post_date;
 			$post['post_date_gmt']  = (string) $wp->post_date_gmt;
@@ -173,6 +174,8 @@ class WXR_Parser_SimpleXML {
 			$post['post_type']      = (string) $wp->post_type;
 			$post['post_password']  = (string) $wp->post_password;
 			$post['is_sticky']      = (int) $wp->is_sticky;
+      $post['tempest_site_id'] = (string) $wp->tempest_site_id;
+      $post['tempest_content_item_id'] = (string) $wp->tempest_content_item_id;
 
 			if ( isset( $wp->attachment_url ) ) {
 				$post['attachment_url'] = (string) $wp->attachment_url;
@@ -220,7 +223,9 @@ class WXR_Parser_SimpleXML {
 					'comment_type'         => (string) $comment->comment_type,
 					'comment_parent'       => (string) $comment->comment_parent,
 					'comment_user_id'      => (int) $comment->comment_user_id,
-					'commentmeta'          => $meta,
+          'commentmeta'          => $meta,
+          'tempest_site_id]'     => (string) $comment->tempest_site_id,
+          'tempest_content_item_id' => (string) $comment->tempest_content_item_id,
 				);
 			}
 
