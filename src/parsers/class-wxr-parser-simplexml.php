@@ -224,7 +224,7 @@ class WXR_Parser_SimpleXML {
 					'comment_parent'       => (string) $comment->comment_parent,
 					'comment_user_id'      => (int) $comment->comment_user_id,
           'commentmeta'          => $meta,
-          'tempest_site_id]'     => (string) $comment->tempest_site_id,
+          'tempest_site_id'      => (string) $comment->tempest_site_id,
           'tempest_content_item_id' => (string) $comment->tempest_content_item_id,
 				);
 			}
