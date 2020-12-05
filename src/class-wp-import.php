@@ -841,8 +841,8 @@ class WP_Import extends WP_Importer {
 					if ( isset( $this->processed_authors[ $comment['comment_user_id'] ] ) ) {
 						$newcomments[ $comment_id ]['user_id'] = $this->processed_authors[ $comment['comment_user_id'] ];
           }
-          $newcomments[$comment_id]['tempest_site_id'] = $comment['site_id'];
-          $newcomments[$comment_id]['tempest_item_id'] = $comment['tempest_content_item_id'];
+          $newcomments[$comment_id]['tempest_site_id'] = $comment['tempest_site_id'];
+          $newcomments[$comment_id]['tempest_content_item_id'] = $comment['tempest_content_item_id'];
 				}
 				ksort( $newcomments );
 
